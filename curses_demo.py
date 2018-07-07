@@ -65,9 +65,9 @@ class GameField(object):
                             new_row.append(0)
                         else:
                             new_row.append(row[i])
-                assert len(new_row) == len(row)
+                assert len(new_row) == len(row)     #为什么需要这句？
                 return new_row
-            return tighten(merge(tighten(row)))
+            return tighten(merge(tighten(row)))     #嵌套函数定义
 
         moves = {}
         moves['Left']  = lambda field:                              \
