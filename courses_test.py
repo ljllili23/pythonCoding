@@ -8,5 +8,6 @@ Created on 2018/8/8
 import curses
 
 def main(stdrc):
-
-curses.
+    print('hello world')
+    curses.use_default_color('blue')
+curses.wrapper(main)
