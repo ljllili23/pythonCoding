@@ -6,6 +6,7 @@ Created on 2018/8/8
 
 import curses
 
-def main(stdrc):
-    print('hello world')
-curses.wrapper(main)
+def main(stdscr):
+	print('hello world')
+
+#curses.wrapper(main)

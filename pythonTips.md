@@ -91,3 +91,50 @@ Traceback (most recent call last):
 KeyError: 'puppy'
 ```
 
+
+
+## String join() method
+
+### Example
+
+The following example shows the usage of join() method.
+
+```
+#!/usr/bin/python3
+
+s = "-"
+seq = ("a", "b", "c") # This is sequence of strings.
+print (s.join( seq ))
+```
+
+### Result
+
+When we run above program, it produces the following result −
+
+```
+a-b-c
+```
+
+
+
+## String format() method
+
+### Example
+
+另一种格式化字符串的方法是使用字符串的`format()`方法，它会用传入的参数依次替换字符串内的占位符`{0}`、`{1}`……，不过这种方式写起来比%要麻烦得多：
+
+```python
+>>> 'Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125)
+'Hello, 小明, 成绩提升了 17.1%'
+```
+
+`{1:.1f}%` 这种写法表示精度
+
+
+
+```python
+cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + '|')
+
+```
+
+`{: ^5}`表示中间对齐，宽度为5
