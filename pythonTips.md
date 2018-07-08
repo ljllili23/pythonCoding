@@ -64,3 +64,30 @@ list[::5]		#[0, 5, 10, 15,..., 90, 95]
 list[::-1]		# 倒着取 [99,98,...,0]
 ```
 
+
+
+## defaultdict
+
+在Python中如果访问字典中不存在的键，会引发KeyError异常 
+
+```python
+strings = ('puppy', 'kitten', 'puppy', 'puppy',
+           'weasel', 'puppy', 'kitten', 'puppy')
+counts = {}
+
+for kw in strings:
+    counts[kw] += 1
+```
+
+该例子统计strings中某个单词出现的次数，并在counts字典中作记录。单词每出现一次，在counts相对应的键所存的值数字加1。但是事实上，运行这段代码会抛出KeyError异常，出现的时机是每个单词第一次统计的时候，因为Python的dict中不存在默认值的说法，可以在Python命令行中验证：
+
+```python
+>>> counts = dict()
+>>> counts
+{}
+>>> counts['puppy'] += 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'puppy'
+```
+

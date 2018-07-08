@@ -109,8 +109,8 @@ class GameField(object):
 
         def draw_hor_separator():
             line = '+' + ('+------' * self.width + '+')[1:]
-            separator = defaultdict(lambda: line)
-            if not hasattr(draw_hor_separator, "counter"):
+            separator = defaultdict(lambda: line)           # lambda: line
+            if not hasattr(draw_hor_separator, "counter"):  # hasattr
                 draw_hor_separator.counter = 0
             cast(separator[draw_hor_separator.counter])
             draw_hor_separator.counter += 1
@@ -149,7 +149,7 @@ class GameField(object):
                     return True
                 return False
 
-            return any(change(i) for i in range(len(row) - 1))
+            return any(change(i) for i in range(len(row) - 1))      # 这种写法很方便
 
         check = {}
         check['Left'] = lambda field: \
@@ -205,14 +205,14 @@ def main(stdscr):
     state_actions = {
         'Init': init,
         'Win': lambda: not_game('Win'),
-        'Gameover': lambda: not_game('Gameover'),
+        'Gameover': lambda: not_game('Gameover'),       # Why using lambda?
         'Game': game
     }
 
     curses.use_default_colors()
 
     # 设置终结状态最大数值为 32
-    game_field = GameField(win=32)
+    game_field = GameField(win=2048)
 
     state = 'Init'
 
