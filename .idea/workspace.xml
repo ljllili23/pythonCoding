@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="428f0bd7-ddc4-456d-ba47-dd0c9a932c3c" name="Default" comment="" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="428f0bd7-ddc4-456d-ba47-dd0c9a932c3c" name="Default" comment="" />
+=======
+    <list default="true" id="428f0bd7-ddc4-456d-ba47-dd0c9a932c3c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/courses_test.py" beforeDir="false" />
+    </list>
+>>>>>>> 4b86b1dec40c479bcc83f73bbecc1f6ebfc011dc
+>>>>>>> abca4725d2489ffc54267f2de2cf1919b695099d
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
