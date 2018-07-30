@@ -138,3 +138,9 @@ cast(''.join('|{: ^5} '.format(num) if num > 0 else '|      ' for num in row) + 
 ```
 
 `{: ^5}`表示中间对齐，宽度为5
+
+
+
+## set
+
+set查找复杂度为O(1)。
