@@ -56,3 +56,17 @@ def normalize (dataSet):
         data = (data-minVals)/(maxVals-minVals)
         normailzedDataSet = row_stack((normailzedDataSet,data))
     return normailzedDataSet
+
+
+def datingClassTest():
+    ValRatio = 0.1
+    dataset,label = file2Matrix('datingTestSet.txt')
+    dataset = normalize(dataset)
+    dataSize = dataset.shape[0]
+    ValSize = dataSize*ValRatio
+    totalErr = 0.0
+    for i in range(int(ValSize)):
+        ValLabel = classify(dataset[i,],dataset[int(ValSize):,:],label[int(ValSize):],3)
+        if ValLabel != label[i]:
+            totalErr += 1.0
+    return (totalErr/float(ValSize))
