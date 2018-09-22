@@ -11,7 +11,7 @@ from collections import defaultdict
 
 class Node:
     def __init__(self, data=None, Axis=None):
-        self.data = data
+        self.data = data        # data contain label; data.shape = (2,28*28)
         self.splitAxis = Axis  # 表示在Axis维度上分割空间
         self.lchild = None
         self.rchild = None
@@ -23,12 +23,12 @@ class kdTree:
         self.root = Node()
 
     def insert(self, dataSet, parent, Axis):
-        if dataSet.shape[0] != 0:
-            sortedIdxArray = np.argsort(dataSet, axis=Axis)
-            midIdx = sortedIdxArray[dataSet.shape[0] / 2]
-            newNode = Node(dataSet[midIdx], Axis)
-            if parent == self.root:
-                root = newNode
+        dataSetSize = dataSet.shape[0]
+        if dataSetSize != 0:
+            dataSet = dataSet[dataSet[:,Axis].argsort()]
+            newNode = Node(dataSet[dataSetSize/2], Axis)
+            if parent is None:  # 这里有改动 之前是self.root
+                self.root = newNode
             else:
                 if newNode.data[newNode.splitAxis] > parent.data[parent.splitAxis]:
                     parent.rchild = newNode
@@ -36,14 +36,14 @@ class kdTree:
                 else:
                     parent.lchild = newNode
                     newNode.parent = parent
-        self.insert(dataSet[:, :midIdx], newNode, (Axis + 1) % dataSet.shape[1])
-        self.insert(dataSet[:, midIdx:], newNode, (Axis + 1) % dataSet.shape[1])
+        self.insert(dataSet[:,:dataSetSize/2], newNode, (Axis + 1) % dataSet.shape[1]-1)
+        self.insert(dataSet[:,dataSetSize/2:], newNode, (Axis + 1) % dataSet.shape[1]-1)
 
     def buildKdTree(self, dataSet):
-        kdT = kdTree()
+        # kdT = kdTree()
         # dataDims = dataSet.shape[1]  # 计算出数据点的维度
         Axis = 0
-        self.insert(dataSet, kdT.root, Axis)
+        self.insert(dataSet, None, Axis)
 
     def search(self, data, node, parent):
         if node is None:
@@ -59,7 +59,7 @@ class kdTree:
     def distence(data, node):
         # dis = 0.0
         SqDis = 0.0
-        for x1, x2 in zip(data, node.data):
+        for x1, x2 in zip(data[:-1], node.data[:-1]):
             SqDis += math.pow(float(x1 - x2), 2.0)
         return math.sqrt(SqDis)
 
@@ -101,8 +101,9 @@ class kdTree:
         return nearestNode
 
     def knn(self,data,k):
-        knnlist = defaultdict(int)
+        knnDict = defaultdict(int)
         while k :
             tmp = self.nn(data)
-            knnlist[tmp] += 1
-        return knnlist
+            knnDict[tmp[-1]] += 1
+        return max(knnDict,key=knnDict.get)
+    

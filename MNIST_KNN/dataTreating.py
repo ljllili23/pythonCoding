@@ -11,7 +11,7 @@ from os import listdir
 class MnistData:
     def __init__(self,dir):
         # self.labels = []
-        self.mnistData = np.zeros((0,28*28,2),dtype=np.uint8)
+        self.mnistData = np.zeros((0,28*28+1),dtype=np.uint8)
         self.labelList = listdir(dir)
         # self.labels = []
         # self.picFile = np.zeros((len(labels),))
@@ -19,5 +19,5 @@ class MnistData:
             for picFile in listdir(dir+'/'+label):
                 with cv2.imread(picFile,cv2.IMREAD_GRAYSCALE) as pic:
                     pic.shape = (28*28)
-                    self.mnistData = np.stack((self.mnistData,[pic,label]),axis=0)
+                    self.mnistData = np.stack((self.mnistData,np.append(pic,label)),axis=0)
                 # self.labels.append(label)
