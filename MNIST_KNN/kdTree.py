@@ -59,7 +59,7 @@ class kdTree:
     def distence(data, node):
         # dis = 0.0
         SqDis = 0.0
-        for x1, x2 in zip(data[:-1], node.data[:-1]):
+        for x1, x2 in zip(data, node.data[:-1]):
             SqDis += math.pow(float(x1 - x2), 2.0)
         return math.sqrt(SqDis)
 
@@ -106,4 +106,3 @@ class kdTree:
             tmp = self.nn(data)
             knnDict[tmp[-1]] += 1
         return max(knnDict,key=knnDict.get)
-    
