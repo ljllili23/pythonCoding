@@ -16,11 +16,13 @@ trainData = dataTreating.MnistData(trainSetDir)
 kdTreeInstance = kdTree.kdTree()
 kdTreeInstance.buildKdTree(trainData.mnistData)
 for filename in os.listdir(testSetDir):
-    testData = cv2.imread(filename,cv2.IMREAD_GRAYSCALE)
-    cv2.imshow('testData',testData)
+    testData = cv2.imread(testSetDir+'\\'+filename, cv2.IMREAD_GRAYSCALE)
+    #cv2.imshow('testData',testData)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+
     testData.shape = (28*28)
-    print(validationLabel = kdTreeInstance.knn(testData))
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # print(testData.dtype,testData.shape)
+    print(validationLabel = kdTreeInstance.knn(testData,3))
 
 kdTreeInstance.knn()
